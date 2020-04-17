@@ -11,7 +11,7 @@ after_success:
     - docker build -t wissem2 ./nginx
     - docker build -t wissem3 ./server
     - docker build -t wissem4 ./worker
-    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdn
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     - docker push wissem1
     - docker push wissem2
     - docker push wissem3
