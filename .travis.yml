@@ -3,16 +3,16 @@ services:
     - docker 
  
 before_install:
-    - docker build -t wissem -f ./client/Dockerfile.dev ./client
+    - docker build -t dockerwissem/wissem -f ./client/Dockerfile.dev ./client
 script:
     - docker run wissem npm test -- --coverage
 after_success:
-    - docker build -t wissem1 ./client
-    - docker build -t wissem2 ./nginx
-    - docker build -t wissem3 ./server
-    - docker build -t wissem4 ./worker
+    - docker build -t dockerwissem/wissem1 ./client
+    - docker build -t dockerwissem/wissem2 ./nginx
+    - docker build -t dockerwissem/wissem3 ./server
+    - docker build -t dockerwissem/wissem4 ./worker
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-    - docker push wissem1
-    - docker push wissem2
-    - docker push wissem3
-    - docker push wissem3
+    - docker push dockerwissem/wissem1
+    - docker push dockerwissem/wissem2
+    - docker push dockerwissem/wissem3
+    - docker push dockerwissem/wissem3
