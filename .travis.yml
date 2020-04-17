@@ -1,0 +1,20 @@
+sudo: required
+services:
+	- docker 
+	
+before_install:
+	- docker build -t wissem -f ./client/Dockerfile.dev ./client
+	
+script:
+	- docker run wissem npm test -- --coverage
+
+after_success:
+	- docker build -t wissem1 ./client
+	- docker build -t wissem2 ./nginx
+	- docker build -t wissem3 ./server
+	- docker build -t wissem4 ./worker
+	- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdn
+	- docker push wissem1
+	- docker push wissem2
+	- docker push wissem3
+	- docker push wissem3
