@@ -5,7 +5,7 @@ services:
 before_install:
     - docker build -t dockerwissem/wissem -f ./client/Dockerfile.dev ./client
 script:
-    - docker run wissem npm test -- --coverage
+    - docker run dockerwissem/wissem npm test -- --coverage
 after_success:
     - docker build -t dockerwissem/wissem1 ./client
     - docker build -t dockerwissem/wissem2 ./nginx
