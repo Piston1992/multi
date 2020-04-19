@@ -16,3 +16,5 @@ after_success:
     - docker push dockerwissem/wissem2
     - docker push dockerwissem/wissem3
     - docker push dockerwissem/wissem3
+    
+ 
